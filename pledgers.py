@@ -94,5 +94,5 @@ if not st.session_state['authentication_status']  :
 refresh = st.button("Refresh")
 if refresh :
     st.experimental_rerun()
-st.
+
 st.write(pledges.fetch(query={"player" : name}))
