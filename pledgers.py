@@ -103,8 +103,9 @@ if res:
             pass
         else:
             summary[x['program']] = []
-        summary[x['program']].append({"pledger" : x['pledger'], "points" : x['points'], "amount" : x['amount'] })
 
+        summary[x['program']].append({"pledger" : x['pledger'], "points" : x['points'], "amount" : x['amount'] })
+        st.write(summary)
     for prog in summary.keys():
         with st.expander(prog) :
             st.dataframe(summary[prog])
