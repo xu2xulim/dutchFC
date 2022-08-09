@@ -40,7 +40,7 @@ Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BAS
 
 with st.sidebar:
     st.title("Dutch FC Pledges")
-    st.session_state['authentication_status'] = False
+    
     credentials = auth_init()
 
     if credentials['usernames'] != {}:
