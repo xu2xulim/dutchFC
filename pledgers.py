@@ -27,7 +27,7 @@ pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES
 def auth_init():
 
     res = Users.fetch()
-    st.write(res.items)
+    
     cd = {"usernames" : {} }
     if res.count == 0:
         pass
