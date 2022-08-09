@@ -107,4 +107,4 @@ if res:
 
     for prog in summary.keys():
         with st.expander(prog) :
-            st.df(summary[prog])
+            st.dataframe(summary[prog])
