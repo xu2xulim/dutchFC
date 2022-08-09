@@ -25,6 +25,7 @@ tz = pytz.timezone('Asia/Singapore')
 def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
+    st.write(res)
     cd = {"usernames" : {} }
     if res.count !=0 :
         for x in res.items :
