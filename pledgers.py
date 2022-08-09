@@ -25,7 +25,7 @@ Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BAS
 @st.cache(suppress_st_warning=True)
 def auth_init():
 
-    res = Users.fetch(query=None, limit=100, last=None)
+    res = Users.fetch()
     st.write(res.items)
     cd = {"usernames" : {} }
     if res.count == 0:
