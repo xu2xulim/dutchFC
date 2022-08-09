@@ -20,6 +20,7 @@ from datetime import datetime
 import pytz
 tz = pytz.timezone('Asia/Singapore')
 
+Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
 
 @st.cache(suppress_st_warning=True)
 def auth_init():
@@ -36,7 +37,7 @@ def auth_init():
     return cd
 
 
-Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
+
 
 with st.sidebar:
     st.title("Dutch FC Pledges")
