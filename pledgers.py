@@ -25,11 +25,15 @@ tz = pytz.timezone('Asia/Singapore')
 def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
-    cd = {"usernames" : {} }
-    for x in res.items :
-        cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
-        #usernames.append(x['username'])
-        #hashed_passwords.append(x['hash_password'])
+    if res.count == 0:
+        cd = {"usernames" : {} }
+    else:
+        for x in res.items :
+            cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
+            #usernames.append(x['username'])
+            #hashed_passwords.append(x['hash_password'])
+
+
 
     return cd
 
@@ -50,7 +54,7 @@ with st.sidebar:
 
     if credentials:
         authenticator = stauth.Authenticate(credentials,
-            'milynnus_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
+            'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
         st.info("This application is secured by Streamlit-Authenticator.")
     else:
         st.session_state['authentication_status'] = False
