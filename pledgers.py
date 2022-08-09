@@ -95,4 +95,6 @@ refresh = st.button("Refresh")
 if refresh :
     st.experimental_rerun()
 
-st.write(pledges.fetch(query={"player" : name}))
+res = pledges.fetch(query={"player" : name})
+if res:
+    st.write(res.items)
