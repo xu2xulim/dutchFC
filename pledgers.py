@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 import streamlit.components.v1 as components
 import streamlit_authenticator as stauth
-from streamlit_folium import folium_static
-import folium
+#from streamlit_folium import folium_static
+#import folium
 
 import os
 from datetime import datetime
