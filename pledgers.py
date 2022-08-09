@@ -25,12 +25,9 @@ tz = pytz.timezone('Asia/Singapore')
 def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
-    st.write(res.items)
     cd = {"usernames" : {} }
-    if res.count !=0 :
-        for x in res.items :
-            cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
-
+    for x in res.items :
+        cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
         #usernames.append(x['username'])
         #hashed_passwords.append(x['hash_password'])
 
@@ -46,16 +43,14 @@ def get_card_json (url):
         return {}
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
-pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES_BASE'))
 
 with st.sidebar:
-    st.title("DutchFC Pledges")
-    st.write(st.session_state)
+    st.title("Dutch FC Pledges")
     credentials = auth_init()
 
     if credentials:
         authenticator = stauth.Authenticate(credentials,
-            'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
+            'milynnus_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
         st.info("This application is secured by Streamlit-Authenticator.")
     else:
         st.session_state['authentication_status'] = False
@@ -68,7 +63,7 @@ with st.sidebar:
         authenticator.logout('Logout', 'main')
         st.write('Welcome *%s*' % (st.session_state['name']))
 
-        """res = Users.fetch(query={"name" : name, "username" : username}, limit=None, last=None)
+        res = Users.fetch(query={"name" : name, "username" : username}, limit=None, last=None)
         if len(res.items) == 1:
             user = Users.get(res.items[0]["key"])
             card_dict = {}
@@ -82,7 +77,7 @@ with st.sidebar:
             options=list(card_dict.keys()))
 
         st.write('You selected:', option)
-        st.session_state['card_id'] = card_dict[option]"""
+        st.session_state['card_id'] = card_dict[option]
     elif st.session_state['authentication_status'] == False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] == None:
@@ -138,11 +133,10 @@ with st.sidebar:
 if not st.session_state['authentication_status']  :
     st.stop()
 refresh = st.button("Refresh")
-
 if refresh :
     st.experimental_rerun()
-st.stop()
-"""if 'card_id' in st.session_state:
+
+if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
 
 
@@ -272,4 +266,3 @@ with st.expander("Open to see images of attachments"):
                     ix += 1
                 else:
                     st.warning(res.status_code)
-"""
