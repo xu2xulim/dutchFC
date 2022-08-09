@@ -50,7 +50,7 @@ with st.sidebar:
     st.title("Dutch FC Pledges")
     credentials = auth_init()
 
-    if credentials or credentials['usernames'] != {}:
+    if credentials['usernames'] != {}:
         authenticator = stauth.Authenticate(credentials,
             'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
         st.info("This application is secured by Streamlit-Authenticator.")
