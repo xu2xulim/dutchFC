@@ -27,6 +27,7 @@ def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
     st.write(res.items)
+    cd = {}
     if res.count == 0:
         cd = {"usernames" : {} }
     else:
@@ -35,9 +36,6 @@ def auth_init():
             #usernames.append(x['username'])
             #hashed_passwords.append(x['hash_password'])
     return cd
-
-
-
 
 with st.sidebar:
     st.title("Dutch FC Pledges")
