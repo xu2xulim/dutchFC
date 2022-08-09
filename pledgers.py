@@ -96,5 +96,14 @@ if refresh :
     st.experimental_rerun()
 
 res = pledges.fetch(query={"player" : name})
-if res:
-    st.dataframe(res.items)
+
+pledges = {}
+for itm in res.items:
+    if itm['program'] not in pledges.keys():
+        pledges[itm['program']] = []
+    pledges[itm['program']].append(f"Pledge for ${itm['points']} per point up to ${itm['amount']} from {itm['pledger']}")
+
+for pl in pledges,keys() :
+    with st.expander(pl):
+        for row in pl :
+            st.write(row)
