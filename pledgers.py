@@ -48,6 +48,7 @@ Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BAS
 
 with st.sidebar:
     st.title("Dutch FC Pledges")
+    st.session_state['authentication_status'] = False
     credentials = auth_init()
 
     if credentials['usernames'] != {}:
@@ -55,11 +56,12 @@ with st.sidebar:
             'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
         st.info("This application is secured by Streamlit-Authenticator.")
         name, authentication_status, username = authenticator.login('Login', 'sidebar')
+        st.session_state['authentication_status'] = authentication_status
     else:
         st.session_state['authentication_status'] = False
         st.info("Administrator setup is required.")
 
-    st.session_state['authentication_status'] = authentication_status
+    #st.session_state['authentication_status'] = authentication_status
 
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
