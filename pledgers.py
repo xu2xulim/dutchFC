@@ -97,4 +97,14 @@ if refresh :
 
 res = pledges.fetch(query={"player" : name})
 if res:
-    st.write(res.items)
+    summary = {}
+    for x in res.items:
+        if x['program'] in summary.keys():
+            pass
+        else:
+            summary[x['program']] = []
+        summary[x['program']].append({"pledger" : x['pledger'], "points" : x['points'], "amount" : x['amount'] })
+
+    for prog in summary.keys():
+        with st.expander(prog) :
+            st.df(summary[prog])
