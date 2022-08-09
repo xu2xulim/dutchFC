@@ -60,7 +60,7 @@ with st.sidebar:
 
     name, authentication_status, username = authenticator.login('Login', 'sidebar')
     st.session_state['authentication_status'] = authentication_status
-
+    st.write(st.session_state)
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
         st.write('Welcome *%s*' % (st.session_state['name']))
