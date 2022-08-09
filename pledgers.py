@@ -40,9 +40,9 @@ Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BAS
 
 with st.sidebar:
     st.title("Dutch FC Pledges")
-    
-    credentials = auth_init()
 
+    credentials = auth_init()
+    st.write(credentials)
     if credentials['usernames'] != {}:
         authenticator = stauth.Authenticate(credentials,
             'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
