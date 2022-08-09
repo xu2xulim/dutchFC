@@ -27,7 +27,7 @@ pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES
 def auth_init():
 
     res = Users.fetch()
-    
+
     cd = {"usernames" : {} }
     if res.count == 0:
         pass
@@ -64,7 +64,6 @@ with st.sidebar:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] == None:
         st.warning('Please enter your username and password')
-
 
 
     if not st.session_state['authentication_status']:
