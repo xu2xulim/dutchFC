@@ -21,6 +21,7 @@ import pytz
 tz = pytz.timezone('Asia/Singapore')
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
+pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES_BASE'))
 
 @st.cache(suppress_st_warning=True)
 def auth_init():
@@ -93,4 +94,5 @@ if not st.session_state['authentication_status']  :
 refresh = st.button("Refresh")
 if refresh :
     st.experimental_rerun()
-st.stop()
+
+st.write(pledges.fetch(query={"player" : user.name}))
