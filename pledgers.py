@@ -35,14 +35,6 @@ def auth_init():
             #hashed_passwords.append(x['hash_password'])
     return cd
 
-"""@st.cache(suppress_st_warning=True)
-def get_card_json (url):
-
-    res = requests.post('https://cs0kji.deta.dev/url2json', json={"url" : url})
-    if res.status_code == 200 :
-        return res.json()
-    else:
-        return {}"""
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
 
@@ -57,20 +49,22 @@ with st.sidebar:
         st.info("This application is secured by Streamlit-Authenticator.")
         name, authentication_status, username = authenticator.login('Login', 'sidebar')
         st.session_state['authentication_status'] = authentication_status
+
+        if st.session_state['authentication_status']:
+            authenticator.logout('Logout', 'main')
+            st.write('Welcome *%s*' % (st.session_state['name']))
+
+        elif st.session_state['authentication_status'] == False:
+            st.error('Username/password is incorrect')
+        elif st.session_state['authentication_status'] == None:
+            st.warning('Please enter your username and password')
     else:
         st.session_state['authentication_status'] = False
         st.info("Administrator setup is required.")
 
     #st.session_state['authentication_status'] = authentication_status
 
-    if st.session_state['authentication_status']:
-        authenticator.logout('Logout', 'main')
-        st.write('Welcome *%s*' % (st.session_state['name']))
 
-    elif st.session_state['authentication_status'] == False:
-        st.error('Username/password is incorrect')
-    elif st.session_state['authentication_status'] == None:
-        st.warning('Please enter your username and password')
 
     if not st.session_state['authentication_status']:
         with st.expander("Register"):
