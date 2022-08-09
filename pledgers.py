@@ -27,12 +27,12 @@ def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
     st.write(res.items)
-    cd = {"usernames" : {} }
+    cd = {"usernames" : [] }
     if res.count == 0:
         pass
     else:
         for x in res.items :
-            cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
+            cd['usernames'].append({'username' : x['username'], 'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']})
             #usernames.append(x['username'])
             #hashed_passwords.append(x['hash_password'])
     return cd
