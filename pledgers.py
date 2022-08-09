@@ -50,6 +50,7 @@ pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES
 
 with st.sidebar:
     st.title("DutchFC Pledges")
+    st.write(st.session_state)
     credentials = auth_init()
 
     if credentials:
@@ -67,7 +68,7 @@ with st.sidebar:
         authenticator.logout('Logout', 'main')
         st.write('Welcome *%s*' % (st.session_state['name']))
 
-        res = Users.fetch(query={"name" : name, "username" : username}, limit=None, last=None)
+        """res = Users.fetch(query={"name" : name, "username" : username}, limit=None, last=None)
         if len(res.items) == 1:
             user = Users.get(res.items[0]["key"])
             card_dict = {}
@@ -81,7 +82,7 @@ with st.sidebar:
             options=list(card_dict.keys()))
 
         st.write('You selected:', option)
-        st.session_state['card_id'] = card_dict[option]
+        st.session_state['card_id'] = card_dict[option]"""
     elif st.session_state['authentication_status'] == False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] == None:
