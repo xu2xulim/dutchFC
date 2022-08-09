@@ -26,8 +26,10 @@ def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
     cd = {"usernames" : {} }
-    for x in res.items :
-        cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
+    if res:
+        for x in res.items :
+            cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
+
         #usernames.append(x['username'])
         #hashed_passwords.append(x['hash_password'])
 
