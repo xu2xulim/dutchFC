@@ -47,22 +47,23 @@ with st.sidebar:
         authenticator = stauth.Authenticate(credentials,
             'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
         st.info("This application is secured by Streamlit-Authenticator.")
-        name, authentication_status, username = authenticator.login('Login', 'sidebar')
-        st.session_state['authentication_status'] = authentication_status
 
-        if st.session_state['authentication_status']:
-            authenticator.logout('Logout', 'main')
-            st.write('Welcome *%s*' % (st.session_state['name']))
-
-        elif st.session_state['authentication_status'] == False:
-            st.error('Username/password is incorrect')
-        elif st.session_state['authentication_status'] == None:
-            st.warning('Please enter your username and password')
     else:
         st.session_state['authentication_status'] = False
         st.info("Administrator setup is required.")
 
     #st.session_state['authentication_status'] = authentication_status
+    name, authentication_status, username = authenticator.login('Login', 'sidebar')
+    st.session_state['authentication_status'] = authentication_status
+
+    if st.session_state['authentication_status']:
+        authenticator.logout('Logout', 'main')
+        st.write('Welcome *%s*' % (st.session_state['name']))
+
+    elif st.session_state['authentication_status'] == False:
+        st.error('Username/password is incorrect')
+    elif st.session_state['authentication_status'] == None:
+        st.warning('Please enter your username and password')
 
 
 
