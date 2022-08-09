@@ -1,0 +1,11 @@
+deta
+
+pandas
+numpy
+#httpx
+#click<=8.0.4
+streamlit_authenticator
+#py_trello
+components
+#streamlit-timeline
+#streamlit-folium
