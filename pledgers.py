@@ -50,7 +50,7 @@ with st.sidebar:
     st.title("Dutch FC Pledges")
     credentials = auth_init()
 
-    if credentials:
+    if credentials or credentials != {}:
         authenticator = stauth.Authenticate(credentials,
             'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
         st.info("This application is secured by Streamlit-Authenticator.")
@@ -59,8 +59,11 @@ with st.sidebar:
         st.info("Administrator setup is required.")
 
     name, authentication_status, username = authenticator.login('Login', 'sidebar')
+    st.write (name)
+    st.write (authentication_status)
+    st.write (username)
     st.session_state['authentication_status'] = authentication_status
-    st.write(st.session_state)
+
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
         st.write('Welcome *%s*' % (st.session_state['name']))
