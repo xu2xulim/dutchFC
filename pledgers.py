@@ -34,7 +34,6 @@ def auth_init():
     else:
         for x in res.items :
             cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
-            st.write(cd)
             #hashed_passwords.append(x['hash_password'])
     return cd
 
