@@ -42,7 +42,7 @@ with st.sidebar:
     st.title("Dutch FC Pledges")
 
     credentials = auth_init()
-    st.write(credentials)
+
     if credentials['usernames'] != {}:
         authenticator = stauth.Authenticate(credentials,
             'dfc_stauth', os.environ.get('DFC_USERS_SIGNATURE'), cookie_expiry_days=30)
@@ -94,5 +94,5 @@ if not st.session_state['authentication_status']  :
 refresh = st.button("Refresh")
 if refresh :
     st.experimental_rerun()
-
-st.write(pledges.fetch(query={"player" : user.name}))
+st.
+st.write(pledges.fetch(query={"player" : name}))
