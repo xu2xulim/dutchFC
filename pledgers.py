@@ -26,7 +26,7 @@ def auth_init():
 
     res = Users.fetch(query=None, limit=100, last=None)
     cd = {"usernames" : {} }
-    if res:
+    if res.count !=0 :
         for x in res.items :
             cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
 
