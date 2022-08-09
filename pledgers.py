@@ -33,19 +33,16 @@ def auth_init():
             cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
             #usernames.append(x['username'])
             #hashed_passwords.append(x['hash_password'])
-
-
-
     return cd
 
-@st.cache(suppress_st_warning=True)
+"""@st.cache(suppress_st_warning=True)
 def get_card_json (url):
 
     res = requests.post('https://cs0kji.deta.dev/url2json', json={"url" : url})
     if res.status_code == 200 :
         return res.json()
     else:
-        return {}
+        return {}"""
 
 Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
 
@@ -68,7 +65,7 @@ with st.sidebar:
         authenticator.logout('Logout', 'main')
         st.write('Welcome *%s*' % (st.session_state['name']))
 
-        res = Users.fetch(query={"name" : name, "username" : username}, limit=None, last=None)
+        """res = Users.fetch(query={"name" : name, "username" : username}, limit=None, last=None)
         if len(res.items) == 1:
             user = Users.get(res.items[0]["key"])
             card_dict = {}
@@ -82,7 +79,7 @@ with st.sidebar:
             options=list(card_dict.keys()))
 
         st.write('You selected:', option)
-        st.session_state['card_id'] = card_dict[option]
+        st.session_state['card_id'] = card_dict[option]"""
     elif st.session_state['authentication_status'] == False:
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] == None:
@@ -108,7 +105,7 @@ with st.sidebar:
                 if submit:
                     Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0], 'email' : email})
 
-        with st.expander("Admin setup"):
+        """with st.expander("Admin setup"):
             st.warning("This form is used by the administrator to attach card urls to a username. An admin secret is required for the update.")
             with st.form("Enter the card url to be shared with the user", clear_on_submit=True):
                 username = st.text_input("Username")
@@ -133,15 +130,15 @@ with st.sidebar:
                         else:
                             shared_cards.append(url)
                             Users.update({"shared_cards" : shared_cards }, user["key"])
-                            st.write("Card with url {} is shared with {}".format(url, username))
+                            st.write("Card with url {} is shared with {}".format(url, username))"""
 
 if not st.session_state['authentication_status']  :
     st.stop()
 refresh = st.button("Refresh")
 if refresh :
     st.experimental_rerun()
-
-if 'card_id' in st.session_state:
+st.stop()
+"""if 'card_id' in st.session_state:
     card_id = st.session_state['card_id']
 
 
@@ -271,3 +268,4 @@ with st.expander("Open to see images of attachments"):
                     ix += 1
                 else:
                     st.warning(res.status_code)
+"""
