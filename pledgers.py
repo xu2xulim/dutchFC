@@ -103,7 +103,7 @@ for itm in res.items:
         pledges[itm['program']] = []
     pledges[itm['program']].append(f"Pledge for ${itm['points']} per point up to ${itm['amount']} from {itm['pledger']}")
 
-for pl in pledges,keys() :
+for pl in pledges.keys() :
     with st.expander(pl):
         for row in pl :
             st.write(row)
