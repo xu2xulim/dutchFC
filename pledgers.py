@@ -105,4 +105,5 @@ if res:
             summary[x['program']] = []
 
         summary[x['program']].append({"card_id" : x['card_id'], "pledger" : x['pledger'], "points" : x['points'], "amount" : x['amount'] })
+
 st.write(summary)
