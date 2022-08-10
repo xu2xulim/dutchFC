@@ -1,0 +1,58 @@
+import streamlit as st
+#import pandas as pd
+#import numpy as np
+import streamlit.components.v1 as components
+import streamlit_authenticator as stauth
+#from streamlit_folium import folium_static
+#import folium
+
+import os
+#from datetime import datetime
+#from deta import Deta
+#import json
+#import requests
+
+"""import urllib.request
+import urllib.parse
+#from trello import TrelloClient, List
+from dateutil.parser import parse
+from datetime import datetime
+import pytz
+tz = pytz.timezone('Asia/Singapore')"""
+
+Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
+pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES_BASE'))
+
+#@st.cache(suppress_st_warning=True)
+def auth_init():
+
+    res = Users.fetch()
+
+    cd = {"usernames" : {} }
+    if res.count == 0:
+        pass
+    else:
+        for x in res.items :
+            cd['usernames'][x['username']] = {'name' : x['name'], 'password' : x['hash_password'], 'email' : x['email']}
+            #hashed_passwords.append(x['hash_password'])
+    return cd
+
+if not st.session_state['authentication_status']:
+    with st.expander("Register"):
+        st.warning("This form is for user self registration. The registration data is kept in a Deta Base.")
+        with st.form("Fill in your name, your preferred username and password", clear_on_submit=True):
+            name = st.text_input("Name")
+            username = st.text_input("Username")
+            email = st.text_input("Email")
+            password = st.text_input("Password", type="password")
+            username_unique = Users.fetch(query={"username" : username})
+
+            submit = st.form_submit_button("Submit")
+            if username_unique.count == 0:
+                pass
+            else:
+                st.write("The username : {} has been used, please use another preferred username.".format(username))
+                st.stop()
+
+            if submit:
+                Users.put({'name' : name, 'username' : username, 'hash_password' : stauth.Hasher([password]).generate()[0], 'email' : email})
