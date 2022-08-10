@@ -37,7 +37,7 @@ def auth_init():
             #hashed_passwords.append(x['hash_password'])
     return cd
 
-st.write("# Welcome to Streamlit! 👋")
+st.write("# Welcome to Pledgers! 👋")
 
 #st.sidebar.success("Select a demo above.")
 
@@ -45,18 +45,17 @@ st.markdown(
     """
     Streamlit is an open-source app framework built specifically for
     Machine Learning and Data Science projects.
-    **👈 Select a demo from the sidebar** to see some examples
-    of what Streamlit can do!
-    ### Want to learn more?
-    - Check out [streamlit.io](https://streamlit.io)
-    - Jump into our [documentation](https://docs.streamlit.io)
-    - Ask a question in our [community
-        forums](https://discuss.streamlit.io)
-    ### See more complex demos
-    - Use a neural net to [analyze the Udacity Self-driving Car Image
-        Dataset](https://github.com/streamlit/demo-self-driving)
-    - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-""")
+
+    We are using Streamlit to share with your pledges and we hope to
+    bring you more features in the future.
+
+    Note that this app is secured by Streamlit Authenticator. When
+    you register as a user, only your pledges will be shown to you.
+
+    Do not share your username and password with anyone.
+
+    Register / Login to begin this exciting journey with us.
+    """)
 
 with st.sidebar:
     st.title("Dutch FC Pledges")
