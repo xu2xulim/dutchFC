@@ -18,6 +18,7 @@ else:
     st.subheader("Your pledges :")
     st.write(res.items)
     df = pd.DataFrame(res.items)
+    df.drop(columns['key', 'card_id'])
     st.write(df.head())
     st.stop()
     with st.expander("Show Pledge Details"):
