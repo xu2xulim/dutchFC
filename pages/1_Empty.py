@@ -14,7 +14,7 @@ if not st.session_state['authentication_status'] :
     st.stop()
 else:
     with st.expander("Update the status of my pledge"):
-        res = pledges.fetch(query={"player" : "Bain"})
+        res = pledges.fetch(query={"player" : "Mason Bain"})
         max_index = res.count - 1
         st.subheader("Your pledges :")
         st.dataframe(res.items)
