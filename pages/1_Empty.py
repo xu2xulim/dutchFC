@@ -20,10 +20,10 @@ else:
     with st.expander("Show Pledge Details"):
         st.write(df)
         with st.form("Pick the record by its index to display",clear_on_submit=True):
-            update_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
+            show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             if show:
-                st.write(df.loc[update_index])
+                st.write(df.loc[show_index])
 
     with st.expander("Update the status of my pledge"):
 
@@ -34,5 +34,5 @@ else:
                 ('In Progress', 'Paid', 'Denied'))
             submit = st.form_submit_button("Submit")
             if submit:
-                message = f"The pledge with id {res.items[update_idex]['card_id']} will be update to {status} status"
+                message = "The pledge with id " + res.items[update_idex]['card_id'] + " will be update to" + {status} " status."
                 st.write(message)
