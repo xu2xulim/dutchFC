@@ -35,4 +35,4 @@ else:
             submit = st.form_submit_button("Submit")
             if submit:
                 st.write("The pledge with id ", res.items[update_idex]['card_id'], " will be update to" , status, " status."
-                message)
+                
