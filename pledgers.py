@@ -74,6 +74,7 @@ with st.sidebar:
     #st.session_state['authentication_status'] = authentication_status
     name, authentication_status, username = authenticator.login('Login', 'sidebar')
     st.session_state['authentication_status'] = authentication_status
+    st.session_state['name'] = name
 
     if st.session_state['authentication_status']:
         authenticator.logout('Logout', 'main')
