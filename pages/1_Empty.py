@@ -13,11 +13,27 @@ st.sidebar.markdown("# Empty Placeholder")
 if not st.session_state['authentication_status'] :
     st.stop()
 else:
+    res = pledges.fetch(query={"player" : "Mason Bain"})
+    max_index = res.count - 1
+    st.subheader("Your pledges :")
+    display = res.items
+    del display["key"]
+    del display["card_id"]
+    with st.expander("Show Pledge Details"):
+
+        st.dataframe(display)
+        with st.form("Pick the record by its index to display",clear_on_submit=True):
+            update_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
+            show = st.form_submit_button("Show")
+            if show:
+                st.write(display[update_index])
     with st.expander("Update the status of my pledge"):
-        res = pledges.fetch(query={"player" : "Mason Bain"})
-        max_index = res.count - 1
-        st.subheader("Your pledges :")
-        st.dataframe(res.items)
+
+        st.dataframe(display)
         with st.form("Pick the record by its index to update",clear_on_submit=True):
             update_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
-            st.write(res.items[update_index])
+            status = st.radio(
+                "What is the status of the pledge?",
+                ('In Progress', 'Paid', 'Denied'))
+            message = f"The pledge with id {res.items[update_idex]['key']} will be update to {status} status"
+            st.write(message)
