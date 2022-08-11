@@ -1,5 +1,11 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
 
+from deta import Deta
+
+#Users=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_USERS_BASE'))
+pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES_BASE'))
 st.markdown("# Watch this space")
 st.sidebar.markdown("# Empty Placeholder")
 
