@@ -16,6 +16,7 @@ else:
     res = pledges.fetch(query={"player" : "Mason Bain"})
     max_index = res.count - 1
     st.subheader("Your pledges :")
+    st.write(res.items)
     display = pd.Dataframe(res.items).drop(columns['key', 'card_id'])
     with st.expander("Show Pledge Details"):
 
