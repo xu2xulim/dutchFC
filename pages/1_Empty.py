@@ -16,11 +16,9 @@ else:
     res = pledges.fetch(query={"player" : "Mason Bain"})
     max_index = res.count - 1
     st.subheader("Your pledges :")
-    
-    df = pd.DataFrame(res.items).drop(columns=['key', 'card_id'])
     with st.expander("Show Pledge Details"):
 
-        st.write(display)
+        st.dataframe(res.items).drop(columns=['key', 'card_id'])
         with st.form("Pick the record by its index to display",clear_on_submit=True):
             update_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
