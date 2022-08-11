@@ -17,7 +17,9 @@ else:
     max_index = res.count - 1
     st.subheader("Your pledges :")
     st.write(res.items)
-    display = pd.DataFrame(res.items).drop(columns['key', 'card_id'])
+    df = pd.DataFrame(res.items)
+    st.write(df.head())
+    st.stop()
     with st.expander("Show Pledge Details"):
 
         st.write(display)
