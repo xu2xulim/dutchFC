@@ -23,7 +23,7 @@ else:
             update_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             if show:
-                st.write(display[update_index])
+                st.write(df.loc[update_index])
 
     st.stop()
     with st.expander("Update the status of my pledge"):
