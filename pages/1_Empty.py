@@ -33,5 +33,5 @@ else:
             status = st.radio(
                 "What is the status of the pledge?",
                 ('In Progress', 'Paid', 'Denied'))
-            message = f"The pledge with id {res.items[update_idex]['key']} will be update to {status} status"
+            message = f"The pledge with id {res.items[update_idex]['card_id']} will be update to {status} status"
             st.write(message)
