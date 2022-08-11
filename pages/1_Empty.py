@@ -34,4 +34,4 @@ else:
                 ('In Progress', 'Paid', 'Denied'))
             submit = st.form_submit_button("Submit")
             if submit:
-                st.write("The pledge with id ", res.items[update_index]['card_id'], " will be update to" , status, " status.")
+                st.write("The pledge from ", res.items[update_index]['pledger'], " will be update to" , status, " status.")
