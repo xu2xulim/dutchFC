@@ -25,7 +25,6 @@ else:
             if show:
                 st.write(df.loc[update_index])
 
-    st.stop()
     with st.expander("Update the status of my pledge"):
 
         with st.form("Pick the record by its index to update",clear_on_submit=True):
