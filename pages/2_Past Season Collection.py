@@ -53,6 +53,6 @@ else:
                 st.experimental_rerun()
 
     with st.expander("Marked Collected"):
-        res_collected = res = pledges.fetch(query={"player" : st.session_state['name'], "status?eq" : "Collected"})
+        res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status?eq" : "Collected"})
         df_collected = pd.DataFrame(res_collected.items).drop(columns=['key'])
         st.write(df_collected)
