@@ -13,7 +13,7 @@ pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base('dfc_pledge_93')
 if not st.session_state['authentication_status'] :
     st.stop()
 else:
-    res = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
+    res = pledges.fetch(query={"player" : st.session_state['name'], "status?ne" : "Collected"})
     #res = pledges.fetch()
     max_index = res.count - 1
     st.subheader("Your pledges :")
