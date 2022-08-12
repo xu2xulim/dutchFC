@@ -17,7 +17,7 @@ else:
     #res = pledges.fetch()
     max_index = res.count - 1
     show_index = 0
-    selected_key = ""
+    st.session_state['selected_key'] = ""
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key'])
     refresh = st.button("Refresh")
@@ -30,7 +30,7 @@ else:
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             if show:
-                selected_key = res.items[show_index]['key']
+                st.session_state['selected_key'] = st.res.items[show_index]['key']
                 st.write("Pledger :", res.items[show_index]['pledger'])
                 st.write("Email :", res.items[show_index]['email'])
                 #st.write("Address :", res.items[show_index]['address'])
@@ -44,7 +44,7 @@ else:
                     st.write("Status :", "To be collected")
 
     with st.expander("Update the status of my pledge"):
-        test = pledges.get(selected_key)
+        test = pledges.get(st.session_state['selected_key'])
         st.write("Updating for ", test['pledger'])
 
         with st.form("Select the new status", clear_on_submit=True):
