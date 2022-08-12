@@ -54,5 +54,8 @@ else:
 
     with st.expander("Marked Collected"):
         res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
-        df_collected = pd.DataFrame(res_collected.items).drop(columns=['key'])
-        st.write(df_collected) #
+        if res_collected.count !=0:
+            df_collected = pd.DataFrame(res_collected.items).drop(columns=['key'])
+            st.write(df_collected) #
+        else:
+            st.write("Nothing to show at this point.")
