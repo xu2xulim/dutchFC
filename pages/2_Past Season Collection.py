@@ -46,11 +46,7 @@ else:
         with st.form("", clear_on_submit=True):
             st.write("Updating for pledger", res.items[show_index]['pledger'])
 
-            update_status = st.radio(
-                "What is the status of the pledge?",
-                ('To be collected', 'Collected', 'Denied'))
-
-
+            update_status = st.radio("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
             submit = st.form_submit_button("XXX")
 
             if submit:
