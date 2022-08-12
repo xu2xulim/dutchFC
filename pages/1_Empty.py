@@ -9,7 +9,7 @@ import os
 pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES_BASE'))
 st.markdown("# Watch this space")
 st.sidebar.markdown("# Empty Placeholder")
-st.stop()
+#st.stop()
 if not st.session_state['authentication_status'] :
     st.stop()
 else:
@@ -17,6 +17,8 @@ else:
     max_index = res.count - 1
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key', 'card_id'])
+    with st.expander("Show Pledge Statistics"):
+        st.chart(df['points'])
     with st.expander("Show Pledge Details"):
         st.write(df)
         with st.form("Pick the record by its index to display",clear_on_submit=True):
