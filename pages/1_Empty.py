@@ -36,7 +36,7 @@ else:
                 st.write("Email :", res.items[show_index]['email'])
                 st.write("Address :", res.items[show_index]['address'])
                 st.write("Phone :", res.items[show_index]['phone'])
-                st.write("Points :", res.items[show_index]['points'])
+                st.write("Pledge Per Point :", res.items[show_index]['points'])
                 #st.write("Pledge Per Point :", res.items[show_index]['pledgepp'])
                 st.write("Maximum Amount :", res.items[show_index]['amount'])
                 #st.write("Maximum Amount :", res.items[show_index]['max_amt'])
