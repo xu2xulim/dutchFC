@@ -46,7 +46,7 @@ else:
         test = pledges.get(res.items[show_index]['key'])
         st.write("Updating for ", test['pledger'])
         with st.form("", clear_on_submit=True):
-
+            show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             update_status = st.radio("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
 
             submit = st.form_submit_button("Submit")
