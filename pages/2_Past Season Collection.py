@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import altair as alt
 
 from deta import Deta
 import os
@@ -19,7 +18,9 @@ else:
     max_index = res.count - 1
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key'])
-
+    refresh = st.button("Refresh")
+    if refresh :
+        st.experimental_rerun()
     with st.expander("Show Pledge Details"):
         st.write(df)
         with st.form("Pick the record by its index to display",clear_on_submit=True):
