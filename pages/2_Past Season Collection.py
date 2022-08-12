@@ -29,7 +29,7 @@ else:
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             if show:
-                st.write("Pledger Record Key :", res.items[show_index]['key']
+                st.write("Pledger Record Key :", res.items[show_index]['key'])
                 st.write("Pledger :", res.items[show_index]['pledger'])
                 st.write("Email :", res.items[show_index]['email'])
                 #st.write("Address :", res.items[show_index]['address'])
