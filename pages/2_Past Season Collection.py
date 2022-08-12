@@ -21,7 +21,6 @@ else:
     refresh = st.button("Refresh")
     st.write(df)
     if refresh :
-        st.experimental_memo.clear()
         st.experimental_rerun()
     with st.expander("Show Pledge Details"):
 
