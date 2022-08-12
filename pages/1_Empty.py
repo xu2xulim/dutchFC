@@ -24,8 +24,9 @@ else:
         chart_data = pd.DataFrame(
             np.random.randn(50, 3),
             columns=["a", "b", "c"])
-        df_c = pd.DataFrame(pd.DataFrame(res.items)['points'].value_counts()).column['point', 'count']
+        df_c = pd.DataFrame(res.items)['points'].value_counts()
         st.write(df_c.head())
+        st.bar_chart(df_c)
         #chart = alt.Chart(df_c).mark_bar().encode(
             #x='point',
             #y='count'
