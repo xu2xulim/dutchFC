@@ -28,7 +28,7 @@ else:
             if show:
                 st.write("Pledger :", res.items[show_index]['pledger'])
                 st.write("Email :", res.items[show_index]['email'])
-                st.write("Address :", res.items[show_index]['address'])
+                #st.write("Address :", res.items[show_index]['address'])
                 st.write("Phone :", res.items[show_index]['phone'])
                 st.write("Pledge Per Point :", res.items[show_index]['pledgepp'])
                 st.write("Maximum Amount :", res.items[show_index]['max_amt'])
