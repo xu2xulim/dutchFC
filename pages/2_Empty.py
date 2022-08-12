@@ -44,7 +44,7 @@ else:
             update_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             status = st.radio(
                 "What is the status of the pledge?",
-                ('In Progress', 'Collected', 'Denied'))
+                ('To be collected', 'Collected', 'Denied'))
             submit = st.form_submit_button("Submit")
             if submit:
                 st.write("The pledge from ", res.items[update_index]['pledger'], " will be update to" , status, " status.")
