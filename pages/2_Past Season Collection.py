@@ -19,7 +19,7 @@ else:
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key'])
     refresh = st.button("Refresh")
-    st.write(df)
+    st.write(res.items)
     if refresh :
         st.experimental_memo.clear()
         st.experimental_rerun()
