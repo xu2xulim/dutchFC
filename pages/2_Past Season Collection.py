@@ -18,7 +18,7 @@ else:
     max_index = res.count - 1
     st.session_state['selected_key'] = "NOKEY"
     st.subheader("Your pledges :")
-    df = pd.DataFrame(res.items).drop(columns=['key'])
+    df = pd.DataFrame(res.items)
     refresh = st.button("Refresh")
     st.write(df)
     if refresh :
@@ -29,7 +29,7 @@ else:
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             if show:
-                st.session_state['selected_key'] = res.items[show_index]['key']
+                st.write("Pledger Record Key :", res.items[show_index]['key']
                 st.write("Pledger :", res.items[show_index]['pledger'])
                 st.write("Email :", res.items[show_index]['email'])
                 #st.write("Address :", res.items[show_index]['address'])
@@ -43,19 +43,23 @@ else:
                     st.write("Status :", "To be collected")
 
     with st.expander("Update the status of my pledge"):
-        test = pledges.get(st.session_state['selected_key'])
-        if test:
-            st.write("Updateing for", test['pledger'])
 
-            with st.form("Select the new status", clear_on_submit=True):
-                update_status = st.radio("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
+        with st.form("Select the new status", clear_on_submit=True):
+            rec_key = st.text_input("Pledger Record Key")
+            update_status = st.radio(
+                "What is the status of the pledge?",
+                ('To be collected', 'Collected', 'Denied'))
 
-                submit = st.form_submit_button("Submit")
+            submit = st.form_submit_button("Submit")
 
-                if submit:
-                    st.write("The pledge from ", res.items[show_index]['pledger'], " will be update to" , update_status, " status.")
-                    update = {"status" : update_status}
-                    pledges.update(update, test['key'])
+            if submit:
+
+                update = {"status" : update_status}
+                updated = pledges.update(update, test['key'])
+                st.write("The pledge from ", update['pledger'], " will be update to" , update_status, " status.")
+
+
+
 
 
     with st.expander("Marked Collected"):
