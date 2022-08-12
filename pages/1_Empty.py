@@ -23,7 +23,7 @@ else:
         chart_data = pd.DataFrame(
             np.random.randn(50, 3),
             columns=["a", "b", "c"])
-        chart_data= pd.DataFrame(res.items).groupby('points')['pledgers'].count()
+        chart_data= pd.DataFrame(res.items).groupby('points')['pledger'].count()
         st.bar_chart(chart_data, x='points')
     with st.expander("Show Pledge Details"):
         st.write(df)
