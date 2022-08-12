@@ -9,7 +9,7 @@ import os
 pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES_BASE'))
 st.markdown("# Watch this space")
 st.sidebar.markdown("# Empty Placeholder")
-#st.stop()
+st.stop()
 if not st.session_state['authentication_status'] :
     st.stop()
 else:
