@@ -55,7 +55,7 @@ else:
                 st.write("The pledge from ", res.items[update_index]['pledger'], " will be update to" , status, " status.")
                 update = {"status" : status}
                 pledges.update(update, selected_key)
-                st.experimental_rerun()
+
 
     with st.expander("Marked Collected"):
         res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
