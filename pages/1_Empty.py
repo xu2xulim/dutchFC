@@ -9,7 +9,7 @@ import os
 pledges=Deta(os.environ.get('DETA_PROJECT_ID')).Base(os.environ.get('DFC_PLEDGES_BASE'))
 st.markdown("# Watch this space")
 st.sidebar.markdown("# Empty Placeholder")
-st.stop()
+
 if not st.session_state['authentication_status'] :
     st.stop()
 else:
@@ -23,7 +23,7 @@ else:
         chart_data = pd.DataFrame(
             np.random.randn(50, 3),
             columns=["a", "b", "c"])
-        #chart_data= pd.DataFrame(res.items).groupby('points')['card_id'].count()
+        chart_data= pd.DataFrame(res.items).groupby('points')['card_id'].count()
         st.bar_chart(chart_data)
     with st.expander("Show Pledge Details"):
         st.write(df)
