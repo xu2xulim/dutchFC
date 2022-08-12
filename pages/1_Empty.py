@@ -24,8 +24,8 @@ else:
         chart_data = pd.DataFrame(
             np.random.randn(50, 3),
             columns=["a", "b", "c"])
-
-        chart = alt.Chart(df).mark_bar().encode(
+        df_c = pd.DataFrame(res.items).groupby('points')['pledger'].count()
+        chart = alt.Chart(df_c).mark_bar().encode(
             x='points',
             y='pledger'
             )
