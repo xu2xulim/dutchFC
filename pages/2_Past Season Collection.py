@@ -47,21 +47,21 @@ else:
         if test:
             st.write("Updateing for", test['pledger'])
 
-        with st.form("Select the new status", clear_on_submit=True):
-            update_status = st.radio("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
+            with st.form("Select the new status", clear_on_submit=True):
+                update_status = st.radio("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
 
-            submit = st.form_submit_button("Submit")
+                submit = st.form_submit_button("Submit")
 
-            if submit:
-                st.write("The pledge from ", res.items[show_index]['pledger'], " will be update to" , update_status, " status.")
-                update = {"status" : update_status}
-                pledges.update(update, test['key'])
+                if submit:
+                    st.write("The pledge from ", res.items[show_index]['pledger'], " will be update to" , update_status, " status.")
+                    update = {"status" : update_status}
+                    pledges.update(update, test['key'])
 
-"""
+
     with st.expander("Marked Collected"):
         res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
         if res_collected.count !=0:
             df_collected = pd.DataFrame(res_collected.items).drop(columns=['key'])
             st.write(df_collected) #
         else:
-            st.write("Nothing to show at this point.")"""
+            st.write("Nothing to show at this point.")
