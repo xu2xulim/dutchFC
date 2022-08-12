@@ -24,12 +24,13 @@ else:
         chart_data = pd.DataFrame(
             np.random.randn(50, 3),
             columns=["a", "b", "c"])
-        df_c = pd.DataFrame(res.items)['points'].columns['point', 'count'].value_counts().columns['point', 'count']
-        chart = alt.Chart(df_c).mark_bar().encode(
-            x='point',
-            y='count'
-            )
-        st.altair_chart(chart, use_container_width=True)
+        df_c = pd.DataFrame(res.items)['points']S
+        st.write(df_c.head())
+        #chart = alt.Chart(df_c).mark_bar().encode(
+            #x='point',
+            #y='count'
+            #)
+        #st.altair_chart(chart, use_container_width=True)
     with st.expander("Show Pledge Details"):
         st.write(df)
         with st.form("Pick the record by its index to display",clear_on_submit=True):
