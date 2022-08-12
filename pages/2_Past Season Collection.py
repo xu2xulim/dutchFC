@@ -48,13 +48,14 @@ else:
             st.write("Updating for pledger", res.items[show_index]['pledger'])
             status = st.radio(
                 "What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
-            if status :
-                submit = st.form_submit_button("Submit")
 
-                if submit:
-                    st.write("The pledge from ", res.items[update_index]['pledger'], " will be update to" , status, " status.")
-                    update = {"status" : status}
-                    pledges.update(update, selected_key)
+
+            xxx = st.form_submit_button("Submit")
+
+            if xxx:
+                st.write("The pledge from ", res.items[update_index]['pledger'], " will be update to" , status, " status.")
+                update = {"status" : status}
+                pledges.update(update, selected_key)
 
 
     with st.expander("Marked Collected"):
