@@ -44,7 +44,8 @@ else:
 
     with st.expander("Update the status of my pledge"):
 
-        with st.form("",clear_on_submit=True):
+        with st.form("", clear_on_submit=True):
+            st.write("Updating for pledger", res.items[show_index]['pledger'])
             status = st.radio(
                 "What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
 
