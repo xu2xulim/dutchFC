@@ -121,6 +121,7 @@ for itm in res.items:
     if itm['program'] not in pledges.keys():
         pledges[itm['program']] = []
     pledges[itm['program']].append(f"Pledge for \${itm['points']} per point up to \${itm['amount']} from {itm['pledger']}")
+    #pledges[itm['program']].append(f"Pledge for \${itm['pledgepp']} per point up to \${itm['max_amt']} from {itm['pledger']}")
 
 for pl in pledges.keys() :
     with st.expander(pl):

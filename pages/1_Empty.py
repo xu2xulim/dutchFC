@@ -37,6 +37,7 @@ else:
                 st.write("Address :", res.items[show_index]['address'])
                 st.write("Phone :", res.items[show_index]['phone'])
                 st.write("Points :", res.items[show_index]['points'])
+                #st.write("Pledge Per Point :", res.items[show_index]['pledgepp'])
                 st.write("Amount :", res.items[show_index]['amount'])
                 st.write("Phone :", res.items[show_index]['phone'])
                 try :
