@@ -28,7 +28,17 @@ else:
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             if show:
-                st.write(df.loc[show_index])
+                st.write("Pledger :", res.items[show_index]['pledger'])
+                st.write("Email :", res.items[show_index]['email'])
+                st.write("Address :", res.items[show_index]['address'])
+                st.write("Phone :", res.items[show_index]['phone'])
+                st.write("Points :", res.items[show_index]['points'])
+                st.write("Amount :", res.items[show_index]['amount'])
+                st.write("Phone :", res.items[show_index]['phone'])
+                try :
+                    st.write("Status :", res.items[show_index]['status'])
+                except:
+                    st.write("Status :", "To be implemented")
 
     with st.expander("Update the status of my pledge"):
 
