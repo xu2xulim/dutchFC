@@ -16,7 +16,6 @@ else:
     res = pledges.fetch(query={"player" : st.session_state['name'], "status?ne" : "Collected"})
     #res = pledges.fetch()
     max_index = res.count - 1
-    show_index = 0
     st.session_state['selected_key'] = "NOKEY"
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key'])
