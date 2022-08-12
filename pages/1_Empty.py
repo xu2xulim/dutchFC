@@ -22,7 +22,7 @@ else:
     with st.expander("Show Pledge Statistics"):
         df_c = df['points'].value_counts()
 
-        st.bar_chart(df_c)
+        st.bar_chart(df_c, x='$ per point', y='number of pledgers')
 
     with st.expander("Show Pledge Details"):
         st.write(df)
