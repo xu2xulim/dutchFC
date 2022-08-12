@@ -18,7 +18,7 @@ else:
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key', 'card_id'])
     with st.expander("Show Pledge Statistics"):
-        st.chart(df['points'])
+        st.bar_chart(df['points'])
     with st.expander("Show Pledge Details"):
         st.write(df)
         with st.form("Pick the record by its index to display",clear_on_submit=True):
