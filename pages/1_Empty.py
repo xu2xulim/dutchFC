@@ -14,8 +14,8 @@ st.sidebar.markdown("# Empty Placeholder")
 if not st.session_state['authentication_status'] :
     st.stop()
 else:
-    #res = pledges.fetch(query={"player" : st.session_state['name']})
-    res = pledges.fetch()
+    res = pledges.fetch(query={"player" : st.session_state['name']})
+    #res = pledges.fetch()
     max_index = res.count - 1
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key', 'card_id'])
