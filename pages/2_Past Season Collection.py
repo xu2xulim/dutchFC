@@ -54,7 +54,8 @@ else:
 
             if submit:
                 update = {"status" : update_status}
-                updated = pledges.update(update, rec_key)
+                pledges.update(update, rec_key)
+                updated = pledges.get(rec_key)
                 st.write("The pledge from ", updated['pledger'], " will be update to" , update_status, " status.")
 
     with st.expander("Marked Collected"):
