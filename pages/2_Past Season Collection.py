@@ -44,9 +44,10 @@ else:
 
     with st.expander("Update the status of my pledge"):
         test = pledges.get(st.session_state['selected_key'])
+        if test:
+            st.write("Updateing for", test['pledger'])
 
         with st.form("Select the new status", clear_on_submit=True):
-            show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             update_status = st.radio("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
 
             submit = st.form_submit_button("Submit")
