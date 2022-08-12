@@ -20,9 +20,12 @@ else:
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key', 'card_id'])
     with st.expander("Show Pledge Statistics"):
-        df_c = df['points'].value_counts()
-        st.dataframe(df_c)
-        st.bar_chart(df_c)
+        df = pd.DataFrame(
+            np.random.randn(200, 3),
+            columns=['a', 'b', 'c'])
+
+        c = alt.Chart(df).mark_circle().encode(
+            x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
 
     with st.expander("Show Pledge Details"):
         st.write(df)
