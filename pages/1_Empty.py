@@ -24,7 +24,11 @@ else:
             np.random.randn(50, 3),
             columns=["a", "b", "c"])
         chart_data= pd.DataFrame(res.items).groupby('points')['pledger'].count()
-        st.bar_chart(chart_data, 'points')
+        chart = alt.Chart(chart_data).mark_bar().encode(
+            x='points',
+            y='pledger'
+            )
+        st.altair_chart(chart, use_container_width=True)
     with st.expander("Show Pledge Details"):
         st.write(df)
         with st.form("Pick the record by its index to display",clear_on_submit=True):
