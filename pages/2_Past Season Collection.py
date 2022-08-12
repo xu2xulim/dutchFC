@@ -55,7 +55,7 @@ else:
             if submit:
 
                 update = {"status" : update_status}
-                updated = pledges.update(update, test['key'])
+                updated = pledges.update(update, rec_key)
                 st.write("The pledge from ", update['pledger'], " will be update to" , update_status, " status.")
 
 
