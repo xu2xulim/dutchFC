@@ -43,19 +43,18 @@ else:
                     st.write("Status :", "To be collected")
 
     with st.expander("Update the status of my pledge"):
-
+        test = pledges.get(res.items[show_index]['key'])
+        st.write("Updating for ", test['pledger'])
         with st.form("", clear_on_submit=True):
 
-            st.write("Updating for pledger", res.items[show_index]['pledger'])
-
-            update_status = st.selectbox("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
+            update_status = st.radio("What is the status of the pledge?", ('To be collected', 'Collected', 'Denied'))
 
             submit = st.form_submit_button("Submit")
 
             if submit:
                 st.write("The pledge from ", res.items[show_index]['pledger'], " will be update to" , update_status, " status.")
                 update = {"status" : update_status}
-                pledges.update(update, selected_key)
+                pledges.update(update, test['key'])
 
 
     with st.expander("Marked Collected"):
