@@ -19,7 +19,7 @@ else:
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items).drop(columns=['key'])
     refresh = st.button("Refresh")
-    st.write(res.items)
+    st.write(df)
     if refresh :
         st.experimental_memo.clear()
         st.experimental_rerun()
@@ -29,6 +29,7 @@ else:
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             if show:
+                selected_key = res.items[show_index]['key']
                 st.write("Pledger :", res.items[show_index]['pledger'])
                 st.write("Email :", res.items[show_index]['email'])
                 #st.write("Address :", res.items[show_index]['address'])
@@ -43,16 +44,15 @@ else:
 
     with st.expander("Update the status of my pledge"):
 
-        with st.form("Pick the record by its index to update",clear_on_submit=True):
-            update_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
+        with st.form("",clear_on_submit=True):
             status = st.radio(
                 "What is the status of the pledge?",
                 ('To be collected', 'Collected', 'Denied'))
             submit = st.form_submit_button("Submit")
             if submit:
                 st.write("The pledge from ", res.items[update_index]['pledger'], " will be update to" , status, " status.")
-                update = {"status": status}
-                pledges.update(update, res.items[update_index]['key'])
+                update = {"status" : status}
+                pledges.update(update, selected_key)
                 st.experimental_rerun()
 
     with st.expander("Marked Collected"):
