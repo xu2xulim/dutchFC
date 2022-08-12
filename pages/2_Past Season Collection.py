@@ -53,14 +53,9 @@ else:
             submit = st.form_submit_button("Submit")
 
             if submit:
-
                 update = {"status" : update_status}
                 updated = pledges.update(update, rec_key)
-                st.write("The pledge from ", update['pledger'], " will be update to" , update_status, " status.")
-
-
-
-
+                st.write("The pledge from ", updated['pledger'], " will be update to" , update_status, " status.")
 
     with st.expander("Marked Collected"):
         res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
