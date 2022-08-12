@@ -56,11 +56,11 @@ else:
                 update = {"status" : update_status}
                 pledges.update(update, test['key'])
 
-
+"""
     with st.expander("Marked Collected"):
         res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
         if res_collected.count !=0:
             df_collected = pd.DataFrame(res_collected.items).drop(columns=['key'])
             st.write(df_collected) #
         else:
-            st.write("Nothing to show at this point.")
+            st.write("Nothing to show at this point.")"""
