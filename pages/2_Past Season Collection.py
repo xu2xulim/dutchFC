@@ -50,3 +50,4 @@ else:
                 st.write("The pledge from ", res.items[update_index]['pledger'], " will be update to" , status, " status.")
                 update = {"status": status}
                 pledges.update(update, res.items[update_index]['key'])
+                st.experimental_rerun()
