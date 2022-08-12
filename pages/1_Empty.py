@@ -21,8 +21,8 @@ else:
     df = pd.DataFrame(res.items).drop(columns=['key', 'card_id'])
     with st.expander("Show Pledge Statistics"):
         df_c = df['points'].value_counts()
-
-        st.bar_chart(df_c, x='$ per point', y='number of pledgers')
+        
+        st.bar_chart(st.dataframe(df_c))
 
     with st.expander("Show Pledge Details"):
         st.write(df)
