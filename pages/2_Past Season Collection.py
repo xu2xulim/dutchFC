@@ -24,13 +24,13 @@ else:
         st.experimental_rerun()
 
     with st.expander("Show Pledge Details"):
-        #st.session_state['update'] = "False"
+        st.session_state['update'] = "False"
         action = "No"
+
         with st.form("Pick the record by its index to display",clear_on_submit=False):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             #collected = st.form_submit_button("Update this pledge to Collected")
-
             if show:
                 st.write("Pledger Record Key :", res.items[show_index]['key'], "  ** Copy and Paste ")
                 st.write("Pledger :", res.items[show_index]['pledger'])
@@ -50,9 +50,9 @@ else:
             """if collected and st.session_state['pledger_key'] != None :
                 updated = pledges.update({"status" : "Collected"}, st.session_state['pledger_key'])"""
 
-    if st.session_state['update'] == True:
-            with st.expander("Update the status of pledge"):
 
+    with st.expander("Update the status of pledge"):
+        if st.session_state['update'] == True:
                 with st.form("Select the new status", clear_on_submit=True):
 
                     pledge4update = pledges.get(st.session_state['pledger_key'])
