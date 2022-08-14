@@ -64,6 +64,7 @@ else:
                 submit = st.form_submit_button("Submit")
 
                 if submit:
+                    st.write("Updating .....")
                     update = {"status" : update_status}
                     updated = pledges.update(update, st.session_state['pledger_key'])
                     st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")
