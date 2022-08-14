@@ -31,6 +31,8 @@ else:
             show = st.form_submit_button("Show")
             if st.session_state['pledger_key'] != None:
                 collected = st.form_submit_button("Update this pledge to Collected")
+            else:
+                collected = None
             if show:
                 st.write("Pledger Record Key :", res.items[show_index]['key'], "  ** Copy and Paste ")
                 st.write("Pledger :", res.items[show_index]['pledger'])
