@@ -26,7 +26,7 @@ else:
     with st.expander("Show Pledge Details"):
         #st.session_state['update'] = "False"
         action = "No"
-        with st.form("Pick the record by its index to display",clear_on_submit=True):
+        with st.form("Pick the record by its index to display",clear_on_submit=False):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
             #collected = st.form_submit_button("Update this pledge to Collected")
