@@ -29,6 +29,7 @@ else:
         with st.form("Pick the record by its index to display",clear_on_submit=True):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
+            action = st.form_submit_button("Update this pledge")
             if show:
                 st.write("Pledger Record Key :", res.items[show_index]['key'], "  ** Copy and Paste ")
                 st.write("Pledger :", res.items[show_index]['pledger'])
@@ -42,16 +43,11 @@ else:
                     st.write("Status :", res.items[show_index]['status'])
                 except:
                     st.write("Status :", "To be collected")
-
-                action = st.radio(
-                    "Do you want to update collection status for this pledg?",
-                    ('No', 'Yes'))
-
-                if action == "Yes" :
-                    st.session_state['update'] = True
-                    st.session_state['pledger_key'] = res.items[show_index]['key']
-                else:
-                    st.session_state['update'] = False
+                st.session_state['pledger_key'] = res.items[show_index]['key']
+            if action :
+                st.session_state['update'] = True
+            else:
+                st.session_state['update'] = False
 
 
     if st.session_state['update'] == True:
