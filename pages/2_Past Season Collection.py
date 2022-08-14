@@ -16,7 +16,7 @@ else:
     res = pledges.fetch(query={"player" : st.session_state['name'], "status?ne" : "Collected"})
     #res = pledges.fetch()
     max_index = res.count - 1
-    #st.session_state['selected_key'] = "NOKEY"
+    st.session_state['update'] = "False"
     action = "No"
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items)
@@ -54,7 +54,7 @@ else:
                     st.session_state['update'] = False
 
 
-    if session_state['update'] == True:
+    if st.session_state['update'] == True:
         with st.expander("Update the status of my pledge"):
 
             with st.form("Select the new status", clear_on_submit=True):
