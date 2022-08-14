@@ -50,9 +50,10 @@ else:
     with st.expander("Update the status of pledge"):
         st.warning("This panel is only active when you have selected a pledger by clicking on the Show button")
         with st.form("Select the new status", clear_on_submit=True):
-            if st.session_state['pledger_key'] != None:
-                pledge4update = pledges.get(st.session_state['pledger_key'])
-                st.write("You are updating the pledge status of pledger ", pledge4update['pledger'])
+            if 'pledger_key' in st.session_state.keys() :
+                if st.session_state['pledger_key'] != None:
+                    pledge4update = pledges.get(st.session_state['pledger_key'])
+                    st.write("You are updating the pledge status of pledger ", pledge4update['pledger'])
             update_status = st.radio(
                 "What is the status of the pledge?",
                 ('To be collected', 'Collected', 'Denied'))
