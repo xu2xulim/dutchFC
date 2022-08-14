@@ -45,7 +45,7 @@ else:
                 except:
                     st.write("Status :", "To be collected")
                 st.session_state['pledger_key'] = res.items[show_index]['key']
-            if collected and st.session_state['pledger_key'] ! = None :
+            if collected and st.session_state['pledger_key'] != None :
                 updated = pledges.update({"status" : "Collected"}, st.session_state['pledger_key'])
 
 
