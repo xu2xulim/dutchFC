@@ -44,6 +44,7 @@ else:
                     st.write("Status :", res.items[show_index]['status'])
                 except:
                     st.write("Status :", "To be collected")
+
                 st.session_state['pledger_key'] = res.items[show_index]['key']
                 st.session_state['update'] == True
 
