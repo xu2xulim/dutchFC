@@ -66,7 +66,7 @@ else:
                 updated = pledges.update(update, st.session_state['pledger_key'])
                 st.write("The pledge from ", pledge4update['pledger'], " will be update to" , update_status, " status.")
                 st.session_state['pledger_key'] = None
-                st.experimental.rerun()
+                st.experimental_rerun()
 
 
 
