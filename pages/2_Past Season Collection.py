@@ -23,7 +23,7 @@ else:
     if refresh :
         st.experimental_rerun()
     with st.expander("Show Pledge Details"):
-        st.session_state['update'] = "False"
+        #st.session_state['update'] = "False"
         action = "No"
         with st.form("Pick the record by its index to display",clear_on_submit=True):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
