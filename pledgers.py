@@ -39,6 +39,8 @@ def auth_init():
 
 st.write("# Welcome to Pledgers! 👋")
 
+if 'authentication_status' not in session_state.keys():
+    st.session_state['authentication_status'] = False
 #st.sidebar.success("Select a demo above.")
 
 st.markdown(
