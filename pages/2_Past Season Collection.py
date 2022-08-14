@@ -48,6 +48,13 @@ else:
             if collected and st.session_state['pledger_key'] != None :
                 updated = pledges.update({"status" : "Collected"}, st.session_state['pledger_key'])
 
+    with st.expander("Marked Collected"):
+        res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
+        if res_collected.count !=0:
+            df_collected = pd.DataFrame(res_collected.items).drop(columns=['key'])
+            st.write(df_collected) #
+        else:
+            st.write("Nothing to show at this point.")
 
 
 """    if st.session_state['update'] == True:
@@ -71,12 +78,3 @@ else:
                     st.stop()
                     updated = pledges.update(update, st.session_state['pledger_key'])
                     st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")"""
-
-
-    with st.expander("Marked Collected"):
-        res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
-        if res_collected.count !=0:
-            df_collected = pd.DataFrame(res_collected.items).drop(columns=['key'])
-            st.write(df_collected) #
-        else:
-            st.write("Nothing to show at this point.")
