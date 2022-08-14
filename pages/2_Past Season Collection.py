@@ -22,13 +22,15 @@ else:
     st.write(df)
     if refresh :
         st.experimental_rerun()
+    st.session_state['pledger_key'] = None
     with st.expander("Show Pledge Details"):
         #st.session_state['update'] = "False"
         action = "No"
         with st.form("Pick the record by its index to display",clear_on_submit=True):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
-            action = st.form_submit_button("Update this pledge")
+            if st.session_state['pledger_key'] != None:
+                collected = st.form_submit_button("Update this pledge to Collected")
             if show:
                 st.write("Pledger Record Key :", res.items[show_index]['key'], "  ** Copy and Paste ")
                 st.write("Pledger :", res.items[show_index]['pledger'])
@@ -43,13 +45,12 @@ else:
                 except:
                     st.write("Status :", "To be collected")
                 st.session_state['pledger_key'] = res.items[show_index]['key']
-            if action :
-                st.session_state['update'] = True
-            else:
-                st.session_state['update'] = False
+            if collected and st.session_state['pledger_key'] ! = None :
+                updated = pledges.update({"status" : "Collected"}, st.session_state['pledger_key'])
 
 
-    if st.session_state['update'] == True:
+
+"""    if st.session_state['update'] == True:
         with st.expander("Update the status of pledge"):
 
             with st.form("Select the new status", clear_on_submit=True):
@@ -69,7 +70,7 @@ else:
                     st.write(update_status)
                     st.stop()
                     updated = pledges.update(update, st.session_state['pledger_key'])
-                    st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")
+                    st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")"""
 
 
     with st.expander("Marked Collected"):
