@@ -66,6 +66,9 @@ else:
                 if submit:
                     st.write("Updating .....")
                     update = {"status" : update_status}
+                    st.write(st.session_state['pledger_key'])
+                    st.write(update_status)
+                    st.stop()
                     updated = pledges.update(update, st.session_state['pledger_key'])
                     st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")
 
