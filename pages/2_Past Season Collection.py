@@ -24,7 +24,7 @@ else:
         st.experimental_rerun()
 
     with st.expander("Show Pledge Details"):
-        st.session_state['update'] = "False"
+        #st.session_state['update'] = "False"
 
         with st.form("Pick the record by its index to display",clear_on_submit=False):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
@@ -45,7 +45,7 @@ else:
                     st.write("Status :", "To be collected")
 
                 st.session_state['pledger_key'] = res.items[show_index]['key']
-                st.session_state['update'] == True
+                #st.session_state['update'] == True
 
 
     with st.expander("Update the status of pledge"):
@@ -64,7 +64,9 @@ else:
                 st.write("Updating .....", update_status, "for ...", st.session_state['pledger_key'])
                 update = {"status" : update_status}
                 updated = pledges.update(update, st.session_state['pledger_key'])
-                st.write("The pledge from ", updated['pledger'], " will be update to" , update_status, " status.")
+                st.write("The pledge from ", pledge4update['pledger'], " will be update to" , update_status, " status.")
+                st.session_state['pledger_key'] = None
+                st.experimental.rerun()
 
 
 
