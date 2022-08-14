@@ -29,10 +29,8 @@ else:
         with st.form("Pick the record by its index to display",clear_on_submit=True):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
-            if st.session_state['pledger_key'] != None:
-                collected = st.form_submit_button("Update this pledge to Collected")
-            else:
-                collected = None
+            collected = st.form_submit_button("Update this pledge to Collected")
+
             if show:
                 st.write("Pledger Record Key :", res.items[show_index]['key'], "  ** Copy and Paste ")
                 st.write("Pledger :", res.items[show_index]['pledger'])
