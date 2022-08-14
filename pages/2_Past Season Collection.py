@@ -42,9 +42,10 @@ else:
                     st.write("Status :", res.items[show_index]['status'])
                 except:
                     st.write("Status :", "To be collected")
+
                 action = st.radio(
                     "Do you want to update collection status for this pledg?",
-                    ('Yes', 'No')
+                    ('Yes', 'No'))
 
                 if action == "Yes" :
                     st.session_state['update'] = True
