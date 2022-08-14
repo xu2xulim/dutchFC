@@ -24,14 +24,13 @@ else:
         st.experimental_rerun()
 
     with st.expander("Show Pledge Details"):
-        #st.session_state['update'] = "False"
 
         with st.form("Pick the record by its index to display",clear_on_submit=False):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
             show = st.form_submit_button("Show")
-            #collected = st.form_submit_button("Update this pledge to Collected")
+
             if show:
-                st.write("Pledger Record Key :", res.items[show_index]['key'], "  ** Copy and Paste ")
+                st.write("Pledger Record Key :", res.items[show_index]['key'])
                 st.write("Pledger :", res.items[show_index]['pledger'])
                 st.write("Email :", res.items[show_index]['email'])
                 #st.write("Address :", res.items[show_index]['address'])
@@ -45,10 +44,11 @@ else:
                     st.write("Status :", "To be collected")
 
                 st.session_state['pledger_key'] = res.items[show_index]['key']
-                #st.session_state['update'] == True
+
 
 
     with st.expander("Update the status of pledge"):
+        st.warning("This panel is only active when you have selected a pledger previously.")
         st.write("Processing for this key: ", st.session_state['pledger_key'])
         with st.form("Select the new status", clear_on_submit=True):
             if st.session_state['pledger_key'] != None:
