@@ -64,7 +64,7 @@ else:
                 st.write("Updating .....", update_status, "for ...", st.session_state['pledger_key'])
                 update = {"status" : update_status}
                 updated = pledges.update(update, st.session_state['pledger_key'])
-                st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")
+                st.write("The pledge from ", updated['pledger'], " will be update to" , update_status, " status.")
 
 
 
