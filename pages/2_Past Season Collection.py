@@ -16,7 +16,8 @@ else:
     res = pledges.fetch(query={"player" : st.session_state['name'], "status?ne" : "Collected"})
     #res = pledges.fetch()
     max_index = res.count - 1
-    st.session_state['selected_key'] = "NOKEY"
+    #st.session_state['selected_key'] = "NOKEY"
+    action = "No"
     st.subheader("Your pledges :")
     df = pd.DataFrame(res.items)
     refresh = st.button("Refresh")
