@@ -41,22 +41,34 @@ else:
                     st.write("Status :", res.items[show_index]['status'])
                 except:
                     st.write("Status :", "To be collected")
+                action = st.radio(
+                    "Do you want to update collection status for this pledg?",
+                    ('Yes', 'No')
 
-    with st.expander("Update the status of my pledge"):
+                if action == "Yes" :
+                    st.session_state['update'] = True
+                    st.session_state['pledger_key'] = res.items[show_index]['key']
+                else:
+                    st.session_state['update'] = False
 
-        with st.form("Select the new status", clear_on_submit=True):
-            rec_key = st.text_input("Pledger Record Key")
-            update_status = st.radio(
-                "What is the status of the pledge?",
-                ('To be collected', 'Collected', 'Denied'))
 
-            submit = st.form_submit_button("Submit")
+    if session_state['update'] == True:
+        with st.expander("Update the status of my pledge"):
 
-            if submit:
-                target = pledges.get(rec_key)
-                update = {"status" : update_status}
-                updated = pledges.update(update, rec_key)
-                st.write("The pledge from ", target['pledger'], " will be update to" , update_status, " status.")
+            with st.form("Select the new status", clear_on_submit=True):
+                pledge4update = pledges.get(st.session_state['pledger_key'])
+                st.write("You are updating the pledge status of pledger ", pledge4update['name'])
+                update_status = st.radio(
+                    "What is the status of the pledge?",
+                    ('To be collected', 'Collected', 'Denied'))
+
+                submit = st.form_submit_button("Submit")
+
+                if submit:
+                    update = {"status" : update_status}
+                    updated = pledges.update(update, st.session_state['pledger_key'])
+                    st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")
+
 
     with st.expander("Marked Collected"):
         res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
