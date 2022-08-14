@@ -45,7 +45,7 @@ else:
 
                 action = st.radio(
                     "Do you want to update collection status for this pledg?",
-                    ('Yes', 'No'))
+                    ('No', 'Yes'))
 
                 if action == "Yes" :
                     st.session_state['update'] = True
@@ -55,7 +55,7 @@ else:
 
 
     if st.session_state['update'] == True:
-        with st.expander("Update the status of my pledge"):
+        with st.expander("Update the status of pledge"):
 
             with st.form("Select the new status", clear_on_submit=True):
 
