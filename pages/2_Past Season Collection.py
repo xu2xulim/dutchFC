@@ -51,9 +51,9 @@ else:
     with st.expander("Update the status of pledge"):
         st.write("Processing for this key: ", st.session_state['pledger_key'])
         with st.form("Select the new status", clear_on_submit=True):
-
-            pledge4update = pledges.get(st.session_state['pledger_key'])
-            st.write("You are updating the pledge status of pledger ", pledge4update['pledger'])
+            if st.session_state['pledger_key'] != None:
+                pledge4update = pledges.get(st.session_state['pledger_key'])
+                st.write("You are updating the pledge status of pledger ", pledge4update['pledger'])
             update_status = st.radio(
                 "What is the status of the pledge?",
                 ('To be collected', 'Collected', 'Denied'))
