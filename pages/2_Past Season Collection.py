@@ -25,7 +25,6 @@ else:
 
     with st.expander("Show Pledge Details"):
         st.session_state['update'] = "False"
-        action = "No"
 
         with st.form("Pick the record by its index to display",clear_on_submit=False):
             show_index = st.number_input("Index", min_value=0, max_value=max_index, step=1)
@@ -50,22 +49,24 @@ else:
 
 
     with st.expander("Update the status of pledge"):
-        if st.session_state['update'] == True:
-                with st.form("Select the new status", clear_on_submit=True):
+        st.write("Processing for this key: ", st.session_state['pledger_key'])
+        with st.form("Select the new status", clear_on_submit=True):
 
-                    pledge4update = pledges.get(st.session_state['pledger_key'])
-                    st.write("You are updating the pledge status of pledger ", pledge4update['pledger'])
-                    update_status = st.radio(
-                        "What is the status of the pledge?",
-                        ('To be collected', 'Collected', 'Denied'))
+            pledge4update = pledges.get(st.session_state['pledger_key'])
+            st.write("You are updating the pledge status of pledger ", pledge4update['pledger'])
+            update_status = st.radio(
+                "What is the status of the pledge?",
+                ('To be collected', 'Collected', 'Denied'))
 
-                    submit = st.form_submit_button("Submit")
+            submit = st.form_submit_button("Submit")
 
-                    if submit:
-                        st.write("Updating .....", update_status, "for ...", st.session_state['pledger_key'])
-                        update = {"status" : update_status}
-                        updated = pledges.update(update, st.session_state['pledger_key'])
-                        st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")
+            if submit:
+                st.write("Updating .....", update_status, "for ...", st.session_state['pledger_key'])
+                update = {"status" : update_status}
+                updated = pledges.update(update, st.session_state['pledger_key'])
+                st.write("The pledge from ", pledge4update['name'], " will be update to" , update_status, " status.")
+
+
 
     with st.expander("Marked Collected"):
         res_collected = pledges.fetch(query={"player" : st.session_state['name'], "status" : "Collected"})
