@@ -49,7 +49,6 @@ else:
 
     with st.expander("Update the status of pledge"):
         st.warning("This panel is only active when you have selected a pledger by clicking on the Show button")
-        st.write("Processing for this key: ", st.session_state['pledger_key'])
         with st.form("Select the new status", clear_on_submit=True):
             if st.session_state['pledger_key'] != None:
                 pledge4update = pledges.get(st.session_state['pledger_key'])
